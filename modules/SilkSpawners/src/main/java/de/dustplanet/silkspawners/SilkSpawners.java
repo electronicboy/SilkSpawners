@@ -65,12 +65,6 @@ public class SilkSpawners extends JavaPlugin {
         // Make files and copy defaults
         initializeConfigs();
 
-        // Get full package string of CraftServer
-        String packageName = getServer().getClass().getPackage().getName();
-        // org.bukkit.craftbukkit.version
-        // Get the last element of the package
-        setNMSVersion(packageName.substring(packageName.lastIndexOf('.') + 1));
-
         // Test for right Minecraft version
         if (config.getBoolean("testMCVersion", true)) {
             if (!Arrays.asList(COMPATIBLE_MINECRAFT_VERSIONS).contains(getNMSVersion())) {
@@ -553,6 +547,13 @@ public class SilkSpawners extends JavaPlugin {
     }
 
     public String getNMSVersion() {
+        if (this.nmsVersion == null) {
+            // Get full package string of CraftServer
+            String packageName = getServer().getClass().getPackage().getName();
+            // org.bukkit.craftbukkit.version
+            // Get the last element of the package
+            setNMSVersion(packageName.substring(packageName.lastIndexOf('.') + 1));
+        }
         return nmsVersion;
     }
 
