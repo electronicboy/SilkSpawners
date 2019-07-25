@@ -2,6 +2,8 @@ package de.dustplanet.silkspawners.compat.v1_11_R1;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -306,6 +308,11 @@ public class NMSHandler implements NMSProvider {
             }
         }
         return null;
+    }
+
+    @Override
+    public Collection<Material> getSpawnerEggMaterials() {
+        return EnumSet.of(Material.MONSTER_EGG);
     }
 
     @Override

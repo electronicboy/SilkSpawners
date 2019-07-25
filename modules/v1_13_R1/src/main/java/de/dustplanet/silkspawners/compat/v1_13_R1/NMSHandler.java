@@ -2,10 +2,14 @@ package de.dustplanet.silkspawners.compat.v1_13_R1;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javax.annotation.Nullable;
 
@@ -39,6 +43,7 @@ import net.minecraft.server.v1_13_R1.World;
 
 public class NMSHandler implements NMSProvider {
 
+    private final EnumSet<Material> spawnerEggs;
     private Field tileField;
 
     public NMSHandler() {
@@ -56,6 +61,11 @@ public class NMSHandler implements NMSProvider {
                 e1.printStackTrace();
             }
         }
+
+        spawnerEggs = EnumSet.copyOf(
+            Arrays.stream(Material.values())
+                .filter(material -> material.name().endsWith("_SPAWN_EGG"))
+                .collect(Collectors.toList()));
     }
 
     @Override
@@ -413,6 +423,11 @@ public class NMSHandler implements NMSProvider {
     @Override
     public Material getSpawnEggMaterial() {
         return Material.LEGACY_MONSTER_EGG;
+    }
+
+    @Override
+    public Collection<Material> getSpawnerEggMaterials() {
+        return EnumSet.copyOf(spawnerEggs);
     }
 
 }

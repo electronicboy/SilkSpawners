@@ -73,7 +73,7 @@ public class SilkSpawnersPlayerListener implements Listener {
         Block block = event.getClickedBlock();
         Player player = event.getPlayer();
         // If we use a spawn egg
-        if (item != null && item.getType() == su.nmsProvider.getSpawnEggMaterial()) {
+        if (item != null && su.nmsProvider.getSpawnerEggMaterials().contains(item.getType())) {
             // Get the entityID
             String entityID = su.getStoredEggEntityID(item);
             // Clicked spawner with monster egg to change type

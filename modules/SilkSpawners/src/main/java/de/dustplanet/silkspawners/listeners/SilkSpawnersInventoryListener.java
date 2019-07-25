@@ -42,7 +42,7 @@ public class SilkSpawnersInventoryListener implements Listener {
         ItemStack result = event.getRecipe().getResult();
 
         for (ItemStack itemStack : event.getInventory().getContents()) {
-            if (itemStack.getType() == su.nmsProvider.getSpawnEggMaterial() && itemStack.getDurability() == 0) {
+            if (su.nmsProvider.getSpawnerEggMaterials().contains(itemStack.getType()) && itemStack.getDurability() == 0) {
                 String entityID = su.getStoredEggEntityID(itemStack);
                 result = su.newSpawnerItem(entityID, su.getCustomSpawnerName(entityID), result.getAmount(), true);
                 event.getInventory().setResult(result);

@@ -68,7 +68,11 @@ public interface NMSProvider {
         return Material.IRON_FENCE;
     }
 
+    @Deprecated
     default Material getSpawnEggMaterial() {
-        return Material.MONSTER_EGG;
+        return getSpawnerEggMaterials().iterator().next();
     }
+
+    Collection<Material> getSpawnerEggMaterials();
+
 }

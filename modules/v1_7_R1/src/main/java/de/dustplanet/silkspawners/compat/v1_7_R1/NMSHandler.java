@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 
@@ -226,6 +227,11 @@ public class NMSHandler implements NMSProvider {
     @Override
     public Player getPlayer(String playerUUIDOrName) {
         return Bukkit.getPlayerExact(playerUUIDOrName);
+    }
+
+    @Override
+    public Collection<Material> getSpawnerEggMaterials() {
+        return EnumSet.of(Material.MONSTER_EGG);
     }
 
     @Override
