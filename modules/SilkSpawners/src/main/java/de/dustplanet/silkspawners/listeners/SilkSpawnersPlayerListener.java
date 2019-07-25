@@ -26,9 +26,6 @@ import com.massivecraft.massivecore.ps.PS;
 import de.dustplanet.silkspawners.SilkSpawners;
 import de.dustplanet.silkspawners.events.SilkSpawnersSpawnerChangeEvent;
 import de.dustplanet.util.SilkUtil;
-import us.forseth11.feudal.core.Feudal;
-import us.forseth11.feudal.kingdoms.Kingdom;
-import us.forseth11.feudal.kingdoms.Land;
 
 /**
  * To show a chat message that a player is holding a mob spawner and it's type.
@@ -128,6 +125,7 @@ public class SilkSpawnersPlayerListener implements Listener {
                         }
                     }
                 }
+                /*
                 if (plugin.config.getBoolean("feudalSupport", false) && su.isPluginEnabled("Feudal")) {
                     Land blockLand = new Land(block.getLocation());
                     Kingdom blockKingdom = Feudal.getLandKingdom(blockLand);
@@ -138,6 +136,7 @@ public class SilkSpawnersPlayerListener implements Listener {
                         return;
                     }
                 }
+                */
 
                 // Call the event and maybe change things!
                 SilkSpawnersSpawnerChangeEvent changeEvent = new SilkSpawnersSpawnerChangeEvent(player, block, entityID,

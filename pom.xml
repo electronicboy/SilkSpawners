@@ -14,8 +14,8 @@
 
   <repositories>
     <repository>
-      <id>dustplanet</id>
-      <url>https://repo.dustplanet.de/artifactory/craftbukkit</url>
+      <id>valaria</id>
+      <url>https://repo.valaria.pw/repository/maven-public/</url>
     </repository>
   </repositories>
 
