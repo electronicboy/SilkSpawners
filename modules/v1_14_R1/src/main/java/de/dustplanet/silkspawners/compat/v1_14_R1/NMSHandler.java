@@ -267,6 +267,11 @@ public class NMSHandler implements NMSProvider {
 
     @Override
     public ItemStack newEggItem(String entityID, int amount) {
+        final Material modernEggMaterial = Material.matchMaterial(entityID.toUpperCase() + "_SPAWN_EGG");
+        if (modernEggMaterial != null) {
+            return new ItemStack(modernEggMaterial, amount);
+        }
+
         ItemStack item = new ItemStack(Material.LEGACY_MONSTER_EGG, amount);
         net.minecraft.server.v1_14_R1.ItemStack itemStack = null;
         CraftItemStack craftStack = CraftItemStack.asCraftCopy(item);

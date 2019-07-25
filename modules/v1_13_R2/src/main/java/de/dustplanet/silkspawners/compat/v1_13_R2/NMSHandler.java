@@ -265,6 +265,11 @@ public class NMSHandler implements NMSProvider {
 
     @Override
     public ItemStack newEggItem(String entityID, int amount) {
+        final Material modernEggMaterial = Material.matchMaterial(entityID.toUpperCase() + "_SPAWN_EGG");
+        if (modernEggMaterial != null) {
+            return new ItemStack(modernEggMaterial, amount);
+        }
+
         ItemStack item = new ItemStack(Material.LEGACY_MONSTER_EGG, amount);
         net.minecraft.server.v1_13_R2.ItemStack itemStack = null;
         CraftItemStack craftStack = CraftItemStack.asCraftCopy(item);
@@ -382,12 +387,12 @@ public class NMSHandler implements NMSProvider {
         PlayerInventory inv = player.getInventory();
         ItemStack mainHand = inv.getItemInMainHand();
         ItemStack offHand = inv.getItemInOffHand();
-        if ((mainHand.getType() == Material.LEGACY_MONSTER_EGG || mainHand.getType() == Material.SPAWNER)
-                && (offHand.getType() == Material.LEGACY_MONSTER_EGG || offHand.getType() == Material.SPAWNER)) {
+        if ((spawnerEggs.contains(mainHand.getType()) || mainHand.getType() == Material.SPAWNER)
+                && (spawnerEggs.contains(offHand.getType()) || offHand.getType() == Material.SPAWNER)) {
             return null; // not determinable
-        } else if (mainHand.getType() == Material.LEGACY_MONSTER_EGG || mainHand.getType() == Material.SPAWNER) {
+        } else if (spawnerEggs.contains(mainHand.getType()) || mainHand.getType() == Material.SPAWNER) {
             return mainHand;
-        } else if (offHand.getType() == Material.LEGACY_MONSTER_EGG || offHand.getType() == Material.SPAWNER) {
+        } else if (spawnerEggs.contains(offHand.getType()) || offHand.getType() == Material.SPAWNER) {
             return offHand;
         }
         return null;
@@ -398,12 +403,12 @@ public class NMSHandler implements NMSProvider {
         PlayerInventory inv = player.getInventory();
         ItemStack mainHand = inv.getItemInMainHand();
         ItemStack offHand = inv.getItemInOffHand();
-        if ((mainHand.getType() == Material.LEGACY_MONSTER_EGG || mainHand.getType() == Material.SPAWNER)
-                && (offHand.getType() == Material.LEGACY_MONSTER_EGG || offHand.getType() == Material.SPAWNER)) {
+        if ((spawnerEggs.contains(mainHand.getType()) || mainHand.getType() == Material.SPAWNER)
+                && (spawnerEggs.contains(offHand.getType()) || offHand.getType() == Material.SPAWNER)) {
             return; // not determinable
-        } else if (mainHand.getType() == Material.LEGACY_MONSTER_EGG || mainHand.getType() == Material.SPAWNER) {
+        } else if (spawnerEggs.contains(mainHand.getType()) || mainHand.getType() == Material.SPAWNER) {
             inv.setItemInMainHand(newItem);
-        } else if (offHand.getType() == Material.LEGACY_MONSTER_EGG || offHand.getType() == Material.SPAWNER) {
+        } else if (spawnerEggs.contains(offHand.getType()) || offHand.getType() == Material.SPAWNER) {
             inv.setItemInOffHand(newItem);
         }
     }
