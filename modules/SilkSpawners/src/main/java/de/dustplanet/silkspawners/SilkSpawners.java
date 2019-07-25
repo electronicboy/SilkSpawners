@@ -32,7 +32,6 @@ import de.dustplanet.silkspawners.listeners.SilkSpawnersInventoryListener;
 import de.dustplanet.silkspawners.listeners.SilkSpawnersPlayerListener;
 import de.dustplanet.util.CommentedConfiguration;
 import de.dustplanet.util.SilkUtil;
-import net.gravitydevelopment.updater.Updater;
 
 /**
  * General stuff.
@@ -43,7 +42,6 @@ import net.gravitydevelopment.updater.Updater;
 
 public class SilkSpawners extends JavaPlugin {
     private SilkUtil su;
-    private Updater updater;
     private String nmsVersion;
     private static final int PLUGIN_ID = 35890;
     private static final String[] COMPATIBLE_MINECRAFT_VERSIONS = { "v1_7_R1", "v1_7_R2", "v1_7_R3", "v1_7_R4", "v1_8_R1", "v1_8_R2",
@@ -87,6 +85,7 @@ public class SilkSpawners extends JavaPlugin {
 
         loadConfig();
 
+        /*
         // Check if we should enable the auto Updater & have no snapshot (dev build)
         if (config.getBoolean("autoUpdater", true)) {
             if (getDescription().getVersion().contains("SNAPSHOT")) {
@@ -100,6 +99,7 @@ public class SilkSpawners extends JavaPlugin {
         } else {
             getLogger().info("AutoUpdater is disabled due to config setting.");
         }
+         */
 
         // Commands
         SpawnerCommand spawnerCommand = new SpawnerCommand(this, su);

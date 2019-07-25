@@ -28,10 +28,6 @@
       <url>https://maven.sk89q.com/repo/</url>
     </repository>
     <repository>
-      <id>gravity-repo</id>
-      <url>http://repo.gravitydevelopment.net</url>
-    </repository>
-    <repository>
       <id>valaria</id>
       <url>https://repo.valaria.pw/repository/maven-public/</url>
     </repository>
@@ -83,11 +79,6 @@
           <artifactId>*</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>net.gravitydevelopment.updater</groupId>
-      <artifactId>updater</artifactId>
-      <version>2.4</version>
     </dependency>
     <dependency>
       <groupId>me.confuser</groupId>
@@ -281,17 +272,12 @@
                 <includes>
                   <include>de.dustplanet:SilkSpawners*</include>
                   <include>org.bstats:*</include>
-                  <include>net.gravitydevelopment.updater:updater</include>
                 </includes>
                 <excludes>
                   <exclude>de.dustplanet.silkspawners:SilkSpawners-API</exclude>
                 </excludes>
               </artifactSet>
               <relocations>
-                <relocation>
-                  <pattern>net.gravitydevelopment.updater</pattern>
-                  <shadedPattern>de.dustplanet.util</shadedPattern>
-                </relocation>
                 <relocation>
                   <pattern>org.bstats.bukkit</pattern>
                   <shadedPattern>de.dustplanet.util</shadedPattern>
