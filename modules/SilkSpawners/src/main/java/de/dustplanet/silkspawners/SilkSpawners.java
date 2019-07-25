@@ -270,7 +270,8 @@ public class SilkSpawners extends JavaPlugin {
             getLogger().info("Loading custom recipes");
         }
 
-        if (su.nmsProvider.getSpawnerEggMaterials().size() == 1) {
+        boolean isLegacy = su.nmsProvider.getSpawnerEggMaterials().size() == 1;
+        if (isLegacy) {
 
             // Add "base" recipe for eggs containing no durability (not from SilkSpawners)
             // 1.9 deprecated the durability and uses NBT tags
@@ -452,8 +453,17 @@ public class SilkSpawners extends JavaPlugin {
                         getLogger().info("shape of " + entityID + " contains X");
                     }
                     // Use the right egg!
-                    // TODO
-                    recipe.setIngredient('X', su.nmsProvider.getSpawnEggMaterial(), 0);
+                    // This is where stuff gets pretty
+                    if (isLegacy) {
+                        recipe.setIngredient('X', su.nmsProvider.getSpawnEggMaterial(), 0);
+                    } else {
+                        final Material eggMaterial = Material.getMaterial(entityID.toUpperCase() + "_SPAWN_EGG");
+                        if (eggMaterial == null && verbose) {
+                            getLogger().info("could not find egg material for " + entityID);
+                            continue;
+                        }
+                        recipe.setIngredient('X', eggMaterial);
+                    }
                 }
                 for (String ingredient : ingredientsList) {
                     // They are added like this A,DIRT

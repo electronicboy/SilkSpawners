@@ -419,11 +419,6 @@ public class NMSHandler implements NMSProvider {
     }
 
     @Override
-    public Material getSpawnEggMaterial() {
-        throw new UnsupportedOperationException("Vanilla now uses multiple items to represent spawn eggs");
-    }
-
-    @Override
     public Collection<Material> getSpawnerEggMaterials() {
         return EnumSet.copyOf(spawnerEggs);
     }

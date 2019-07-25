@@ -516,7 +516,7 @@ public class SilkUtil {
             customName = "Monster Spawner";
         }
         // Please eggs or spawners
-        if (item == null || item.getType() != nmsProvider.getSpawnerMaterial() && item.getType() != nmsProvider.getSpawnEggMaterial()) {
+        if (item == null || item.getType() != nmsProvider.getSpawnerMaterial() && !nmsProvider.getSpawnerEggMaterials().contains(item.getType())) {
             return item;
         }
         ItemMeta meta = item.getItemMeta();

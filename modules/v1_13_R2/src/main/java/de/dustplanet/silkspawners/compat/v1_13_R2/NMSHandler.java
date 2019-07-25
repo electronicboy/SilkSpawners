@@ -417,11 +417,6 @@ public class NMSHandler implements NMSProvider {
     }
 
     @Override
-    public Material getSpawnEggMaterial() {
-        return Material.LEGACY_MONSTER_EGG;
-    }
-
-    @Override
     public Collection<Material> getSpawnerEggMaterials() {
         return EnumSet.copyOf(spawnerEggs);
     }

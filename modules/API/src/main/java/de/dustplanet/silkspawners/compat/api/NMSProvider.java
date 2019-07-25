@@ -70,6 +70,8 @@ public interface NMSProvider {
 
     @Deprecated
     default Material getSpawnEggMaterial() {
+        final Collection<Material> spawnerEggMaterials = getSpawnerEggMaterials();
+        if (spawnerEggMaterials.size() != 1) throw new UnsupportedOperationException("Vanilla now uses multiple items to represent spawn eggs");
         return getSpawnerEggMaterials().iterator().next();
     }
 
